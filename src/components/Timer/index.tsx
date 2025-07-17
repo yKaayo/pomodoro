@@ -8,9 +8,14 @@ import { useInterval } from "../../hooks/useInterval";
 
 // Util
 import { secondsToTime } from "../../utils/secondsToTime";
+import { playSound } from "../../utils/playSound";
 
 // Type
 import type { Stage } from "../../types";
+
+// Sounds
+import bellStart from "../../assets/sounds/bell-start.mp3";
+import bellFinish from "../../assets/sounds/bell-finish.mp3";
 
 interface TimerProps {
   stage: Stage;
@@ -19,6 +24,7 @@ interface TimerProps {
   shortBreakTime: number;
   longBreakTime: number;
   isPlayed: boolean;
+  setIsPlayed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Timer = ({
@@ -28,6 +34,7 @@ const Timer = ({
   shortBreakTime,
   longBreakTime,
   isPlayed,
+  setIsPlayed,
 }: TimerProps) => {
   const [time, setTime] = useState(focusTime);
   const countRounds = useRef(0);
@@ -35,7 +42,9 @@ const Timer = ({
   useInterval(
     () => {
       if (time === 0) {
+        playSound(bellFinish);
         countRounds.current++;
+        setIsPlayed(false)
 
         if (countRounds.current === 5) {
           setStage("longBreak");

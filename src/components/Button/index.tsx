@@ -8,6 +8,13 @@ import Pause from "../../assets/icons/Pause";
 // Type
 import type { Stage } from "../../types";
 
+// Util
+import { playSound } from "../../utils/playSound";
+
+// Sounds
+import bellStart from "../../assets/sounds/bell-start.mp3";
+import bellFinish from "../../assets/sounds/bell-finish.mp3";
+
 interface BtnProps {
   stage: Stage;
   isPlayed: boolean;
@@ -18,6 +25,12 @@ interface BtnProps {
 const Button = ({ stage, isPlayed, setIsPlayed, colors }: BtnProps) => {
   const handleClick = () => {
     setIsPlayed((prev) => !prev);
+
+    if (isPlayed) {
+      playSound(bellFinish);
+    } else {
+      playSound(bellStart);
+    }
   };
 
   return (

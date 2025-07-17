@@ -48,6 +48,7 @@ const Home = () => {
         shortBreakTime={2}
         longBreakTime={3}
         isPlayed={isPlayed}
+        setIsPlayed={setIsPlayed}
       />
 
       <Button
