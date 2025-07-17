@@ -1,0 +1,49 @@
+@use "../../styles/variables" as *;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  min-height: 100vh;
+  width: 100%;
+
+  & h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 2px solid;
+    border-radius: 9999px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+.focus {
+  background-color: $red-light;
+
+  & h1 {
+    border-color: $red-dark;
+    background-color: $red-alpha;
+  }
+}
+
+.shortBreak {
+  background-color: $green-light;
+
+  & h1 {
+    border-color: $green-dark;
+    background-color: $green-alpha;
+  }
+}
+
+.longBreak {
+  background-color: $blue-light;
+
+  & h1 {
+    border-color: $blue-dark;
+    background-color: $blue-alpha;
+  }
+}

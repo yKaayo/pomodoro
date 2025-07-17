@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 48px;
+  height: 48px;
+  border-radius: 32px;
+
+  cursor: pointer;
+}
+
+.focus {
+  background-color: $red;
+}
+
+.shortBreak {
+  background-color: $green;
+}
+
+.longBreak {
+  background-color: $blue;
+}
