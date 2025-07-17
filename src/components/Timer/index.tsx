@@ -13,8 +13,7 @@ import { playSound } from "../../utils/playSound";
 // Type
 import type { Stage } from "../../types";
 
-// Sounds
-import bellStart from "../../assets/sounds/bell-start.mp3";
+// Sound
 import bellFinish from "../../assets/sounds/bell-finish.mp3";
 
 interface TimerProps {
@@ -25,6 +24,7 @@ interface TimerProps {
   longBreakTime: number;
   isPlayed: boolean;
   setIsPlayed: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimeWorked: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Timer = ({
@@ -35,16 +35,19 @@ const Timer = ({
   longBreakTime,
   isPlayed,
   setIsPlayed,
+  setTimeWorked,
 }: TimerProps) => {
   const [time, setTime] = useState(focusTime);
   const countRounds = useRef(0);
+
+  const timeFormatted = secondsToTime(time)
 
   useInterval(
     () => {
       if (time === 0) {
         playSound(bellFinish);
         countRounds.current++;
-        setIsPlayed(false)
+        setIsPlayed(false);
 
         if (countRounds.current === 5) {
           setStage("longBreak");
@@ -58,6 +61,7 @@ const Timer = ({
           setTime(shortBreakTime);
         }
       } else {
+        if (stage === "focus") setTimeWorked((prev) => prev + 1);
         setTime((prev) => prev - 1);
       }
     },
@@ -68,10 +72,13 @@ const Timer = ({
   return (
     <div className={`${styles.timer} ${styles[stage]}`}>
       <p style={isPlayed ? { fontWeight: 800 } : { fontWeight: 400 }}>
-        {secondsToTime(time).min}
+        {timeFormatted.hrs}
       </p>
       <p style={isPlayed ? { fontWeight: 800 } : { fontWeight: 400 }}>
-        {secondsToTime(time).sec}
+        {timeFormatted.min}
+      </p>
+      <p style={isPlayed ? { fontWeight: 800 } : { fontWeight: 400 }}>
+        {timeFormatted.sec}
       </p>
     </div>
   );

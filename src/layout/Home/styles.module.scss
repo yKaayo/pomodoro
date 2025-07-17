@@ -1,6 +1,7 @@
 @use "../../styles/variables" as *;
 
 .home {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +17,7 @@
     padding: 8px 16px;
     border: 2px solid;
     border-radius: 9999px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
   }
 }

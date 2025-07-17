@@ -1,0 +1,47 @@
+@use "../../styles/variables" as *;
+
+.info {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  padding: 10px 16px;
+  height: min-content;
+  width: min-content;
+  border-radius: 16px;
+
+  & h2 {
+    margin-bottom: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    min-width: max-content;
+  }
+
+  & p {
+    width: min-content;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.focus {
+  color: $red-dark;
+  background-color: $red-alpha;
+}
+
+.shortBreak {
+  color: $green-dark;
+  background-color: $green-alpha;
+}
+
+.longBreak {
+  color: $blue-dark;
+  background-color: $blue-alpha;
+}
+
+@media (width <= 768px) {
+  .info {
+    position: relative;
+    left: 0;
+  }
+}
